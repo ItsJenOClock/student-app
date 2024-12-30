@@ -1,7 +1,8 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import './Student.css';
 
 const Student = (props) => {
+
   const attendanceButtonClicked = () => {
     props.onPresenceToggle(props.id);
 };
@@ -14,11 +15,12 @@ const Student = (props) => {
         <li className={nameColor}>Nickname: {props.name}</li>
         <li>Email: {props.email}</li>
       </ul>
-      <button onClick={attendanceButtonClicked}>Toggle if {props.name} is present</button>
+      <button onClick={attendanceButtonClicked}>
+        Toggle if {props.name} is present
+      </button>
     </div>
   );
 };
-
 
 Student.propTypes = {
   id: PropTypes.number.isRequired,
