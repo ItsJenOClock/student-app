@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import StudentList from './components/StudentList';
+import NewStudentForm from './components/NewStudentForm';
+
 
 function App() {
   const [studentData, setStudentData] = useState([
@@ -33,7 +35,25 @@ function App() {
     });
 
     setStudentData(students);
-  }
+  };
+
+  const addStudentData = (newStudent) => {
+    // Logic to generate the next valid student ID
+    const nextId = Math.max(0, ...studentData.map((student) => student.id)) + 1;
+
+    // Duplicate the student list
+    const newStudentList = [...studentData];
+
+    newStudentList.push({
+        id: nextId,
+        nameData: newStudent.nameData,
+        emailData: newStudent.emailData,
+        isPresentData: false,
+    });
+
+    setStudentData(newStudentList);
+  };
+
 
   return (
     <main>
@@ -42,6 +62,9 @@ function App() {
         students={studentData}
         onStudentPresenceToggle={toggleStudentPresence}
       ></StudentList>
+      <NewStudentForm
+        onStudentAdd={addStudentData}
+      ></NewStudentForm>
     </main>
   );
 }
